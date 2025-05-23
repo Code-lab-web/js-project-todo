@@ -1,9 +1,11 @@
 import { useCountTodo } from './todo.jsx/useCountTodo';
+import todoStore from './todoStore';
+export const useTodo = todoStore;
 import { create } from 'zustand';
-import { devtools } from "zustand/middleware"
+import { devtools } from 'zustand/middleware';
 // import { mission } from 'tasks/mission.js'
 
-const useTodo = create(
+const _TodoStoreInstance = create(
   devtools((set) => ({
     todos: 0,
     todo: 0,
@@ -62,3 +64,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default todoStore; // Removed the default export of useTodo to comply with Fast Refresh requirements.

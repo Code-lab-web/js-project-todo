@@ -10,3 +10,4 @@ export const App = () => {
   )
 }
 // Removed unused import
+export default App

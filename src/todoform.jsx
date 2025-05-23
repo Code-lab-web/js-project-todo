@@ -31,6 +31,6 @@ const [TODO, setTodo] = useState([]);
         />
       </label>
       <button type="submit">Send</button>
-    </form>
-  );
-}
+        </form>
+      );
+    };
