@@ -1,10 +1,11 @@
+import { useShallow } from "zustand/shallow";
 import { usetodoStore , type Todo } from "../stores/todoStore";
 import { TodoItem } from "./TodoItem";
 import { Separator } from "@/components/ui/separator";
 
 export const TodoList => {
     const todos: Todo[] =useTodoStore((state => state.todos);
-
+const isSubscribed = useSubscribed();
     if (todos.length === 0) {
         return(
             <div className="text-center text-muted-foreground py-8">

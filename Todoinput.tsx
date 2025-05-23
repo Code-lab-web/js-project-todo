@@ -6,8 +6,8 @@ import { useTodoStore } from "@/stores/todoStore";
 
 export const TodoInput = () => {
     const [text, setText] = useState("");
-    const todos = useTodoStore((state) => state.setTodos);
-
+    const todos = useTodoStore((state) => state.settodos);
+const { setTodos } = useTodoActions();
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (text.trim()) {
