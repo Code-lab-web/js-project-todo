@@ -4,7 +4,6 @@ import styled from "styled-components";
 import moment from "moment";
 import ReminderBox from "./ReminderBox.jsx";
 import TagSelector from "./TagSelector.jsx";
-import StarAnimation from "./Animation.jsx";
 import TagDot from "./TagDot.jsx";
 
 const Header = styled.div`
@@ -21,6 +20,24 @@ const Header = styled.div`
 const Time = styled.div`
   text-align: center;
   margin-bottom: 40px;
+  color: var(--text-color);
+`;
+
+const TableHead = styled.div`
+  display: none;
+
+  @media (min-width: 668px) {
+    display: grid;
+    grid-template-columns: 150px 130px 2fr 60px 100px;
+    padding: 10px 0;
+    font-weight: bold;
+    border-bottom: 2px solid var(--outline);
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 8px;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -29,80 +46,40 @@ const MainContainer = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
-
-  @media (min-width: 668px) {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    align-items: start;
-    margin-top: 80px;
-    flex-direction: row;
-    margin-top: 60px;
-  }
-
-  @media (min-width: 1024px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    margin: 0 auto;
-    justify-items: center;
-    align-items: start;
-    max-width: 900px;
-    gap: 40px;
-    margin-top: 40px;
-  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  padding: 24px;
-  row-gap: 20px;
   background-color: var(--card-bg);
-  margin: 0 auto;
-  margin-top: 8px;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 8px auto 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-
-  @media (max-width: 667px) {
-    min-height: 80vh;
-    height: auto;
-    overflow: visible;
-    margin-bottom: 80px;
-  }
+  width: 95%;
+  margin-bottom: 15px;
 
   @media (min-width: 668px) {
-    width: 300px;
-    height: auto;
-    overflow: visible;
-    //overflow-y: auto;
-    margin-bottom: 80px;
+    width: 90%;
+    padding: 20px;
   }
 
   @media (min-width: 1024px) {
-    width: 400px;
-    height: auto;
-    overflow: visible;
-    //overflow-y: auto;
-  }
-`;
-
-const BoxWrapper = styled.div`
-  width: 90%;
-  max-width: 300px;
-  margin-bottom: 16px;
-
-  @media (min-width: 668px) {
-    width: auto;
+    width: 100%;
+    max-width: 1000px;
+    padding: 24px;
+    margin-bottom: 60px;
   }
 `;
 
 const InputRow = styled.div`
   display: flex;
-  gap: 8px;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 12px;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 668px) {
+    flex-direction: row;
     justify-content: center;
   }
 `;
@@ -110,12 +87,11 @@ const InputRow = styled.div`
 const Input = styled.input`
   padding: 12px 16px;
   border: none;
-  max-width: 120px;
-  margin-top: 20px;
-  align-items: center;
+  width: 100%;
+  margin-top: 0;
 
-  @media (min-width: 1024px) {
-    align-items: center;
+  @media (min-width: 668px) {
+    max-width: 250px;
   }
 
   &:focus {
@@ -126,14 +102,16 @@ const Input = styled.input`
 const AddButton = styled.button`
   border: none;
   border-radius: 8px;
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
   padding: 12px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 20px 0 0;
 
-  &:checked {
-    border: 1px solid var(--outline);
+  @media (min-width: 668px) {
+    width: 80%;
+    max-width: 300px;
+    margin: 20px auto 0;
+    margin-bottom: 10px;
   }
 
   &:hover,
@@ -144,24 +122,33 @@ const AddButton = styled.button`
   }
 `;
 
+const TodoItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* for wrapping on miniscreen */
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 800px;
+  border-bottom: 1px solid var(--outline);
+  gap: 6px;
+
+  @media (min-width: 668px) {
+    display: grid;
+    grid-template-columns: 150px 130px 2fr 60px 100px;
+    flex-wrap: nowrap;
+    padding: 8px 0;
+  }
+`;
+
 const TodoList = styled.ul`
   list-style: none;
   padding: 0;
   width: 100%;
-  max-width: 300px;
-  margin-top: 32px;
-`;
-
-const TodoItem = styled.li`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  position: relative;
-  gap: 4px;
-
-  input[type="checkbox"] {
-    margin-right: 12px;
-    transform: scale(1.2);
-  }
+  margin-top: 16px;
 `;
 
 const StyledCheckBox = styled.input.attrs({ type: "checkbox" })`
@@ -172,10 +159,21 @@ const StyledCheckBox = styled.input.attrs({ type: "checkbox" })`
   width: 15px;
   height: 15px;
   cursor: pointer;
-  background-color: var(--text-dark);
+  background-color: var(--accent);
+  border: 1px solid var(--text-dark);
 
   &:checked {
-    border: 1px solid var(--accent);
+    background-color: var(--outline);
+    border: 1px solid var(--text-dark);
+  }
+
+  &:checked::after {
+    content: "✔";
+    color: var(--text-dark);
+    position: absolute;
+    font-size: 12px;
+    top: -2px;
+    left: 2px;
   }
 `;
 
@@ -183,19 +181,21 @@ const TaskText = styled.span`
   flex: 1;
   margin: 0 4px;
   word-break: break-word;
-  max-width: 100%;
   text-decoration: ${(props) => (props.$completed ? "line-through" : "none")};
   color: var(--text-dark);
+  min-width: 100px;
 `;
 
 const RemoveButton = styled.button`
   border: none;
   border-radius: 8px;
-  max-width: 100px;
-  padding: 5px 5px;
+  width: 80px;
+  padding: 5px;
   cursor: pointer;
-  margin-top: 5px;
-  margin-bottom: 5px;
+
+  @media (min-width: 668px) {
+    width: 100px;
+  }
 
   &:hover,
   &:focus-visible {
@@ -220,15 +220,56 @@ const TaskList = styled.p`
   }
 `;
 
-const TaskCount = styled.p`
-  margin-left: 15px;
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--text-dark);
-  margin: 0 auto;
-  margin-top: 40px;
+const NotesText = styled.span`
+  word-break: break-word;
+
+  @media (max-width: 668px) {
+    display: none;
+  }
 `;
 
+const TaskCount = styled.p`
+  margin: 40px auto 0;
+  font-size: 14px;
+  color: var(--text-dark);
+  text-align: center;
+`;
+
+const CountWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  @media (min-width: 668px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+  }
+`;
+
+const InputCount = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+
+  @media (min-width: 668px) {
+    max-width: 250px;
+  }
+`;
+
+const Count = styled.div`
+  margin-top: 10px;
+  margin-left: 4px;
+  margin-right: 2px;
+  min-width: 60px;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 10px;
+`;
+
+//Todo component with state management hooks for todos, form inputs (task, notes, tag), and a submit handler that adds new todos and clears the form.
 const ToDo = () => {
   const todos = useStore((state) => state.todos);
   const addTodo = useStore((state) => state.addTodo);
@@ -263,80 +304,88 @@ const ToDo = () => {
 
       <main>
         <MainContainer>
-          <BoxWrapper>
-            <ReminderBox />
-          </BoxWrapper>
+          <ReminderBox />
 
-          <BoxWrapper>
-            <Form onSubmit={handleSubmit}>
-              <h3>Write your task and notes here.</h3>
-              <InputRow>
-                <Input
-                  type="text"
-                  value={newTask}
-                  onChange={(e) => setNewTask(e.target.value)}
-                  placeholder="Add task"
-                  aria-label="Add a new task"
-                  required
-                  maxLength={30}
-                />
-                <Input
-                  type="text"
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Add notes"
-                  aria-label="Notes"
-                  maxLength={30}
-                />
-              </InputRow>
+          <Form onSubmit={handleSubmit}>
+            <h3>Write your task and notes here.</h3>
+            <InputRow>
+              <CountWrapper>
+                <InputCount>
+                  <Input
+                    type="text"
+                    value={newTask}
+                    onChange={(e) => setNewTask(e.target.value)}
+                    placeholder="Add task"
+                    aria-label="Add a new task"
+                    required
+                    maxLength={30}
+                  />
+                  <Count>{newTask.length}/30</Count>
+                  <Input
+                    type="text"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)} //gets the current text from the input field when user types.
+                    placeholder="Add notes"
+                    aria-label="Write Notes"
+                    maxLength={15}
+                  />
+                  <Count>{notes.length}/15</Count>
+                </InputCount>
+              </CountWrapper>
+            </InputRow>
 
-              <TagSelector
-                selectedTag={selectedTag}
-                setSelectedTag={setSelectedTag}
-              />
+            <TagSelector
+              selectedTag={selectedTag}
+              setSelectedTag={setSelectedTag}
+            />
 
-              <AddButton type="submit" aria-label="Add a new task">
-                Add Task
-              </AddButton>
-
-              <TodoList>
-                {todos.map((todo) => (
-                  <TodoItem key={todo.id}>
-                    <StyledCheckBox
-                      type="checkbox"
-                      checked={todo.completed}
-                      onChange={() => toggleTodo(todo.id)}
-                      aria-label={`Mark "${todo.text}" as ${
-                        todo.completed ? "incomplete" : "complete"
-                      }`}
-                    />{" "}
-                    {todo.tag && <TagDot tag={todo.tag} />}
-                    <TaskText $completed={todo.completed}>
-                      {todo.text}
-                      {todo.notes && ` - ${todo.notes}`}
-                    </TaskText>
-                    {todo.completed && <StarAnimation />}
-                    <RemoveButton
-                      onClick={() => removeTodo(todo.id)}
-                      aria-label={`Remove task: ${todo.text}`}
-                    >
-                      Remove 🗑️
-                    </RemoveButton>
-                  </TodoItem>
-                ))}
-              </TodoList>
-              {todos.length > 0 && (
-                <>
-                  <TaskCount>{todos.length} Task total</TaskCount>
-                </>
-              )}
-              {todos.length === 0 && (
-                <TaskList>
-                  You have no tasks at the moment. Enjoy your day!
-                </TaskList>
-              )}
-            </Form>
-          </BoxWrapper>
+            <AddButton type="submit" aria-label="Add a new task">
+              Add Task
+            </AddButton>
+            <TableHead>
+              <span>Task</span>
+              <span>Tag</span>
+              <span>Notes</span>
+              <span>✔</span>
+              <span>Remove</span>
+            </TableHead>
+            <TodoList>
+              {todos.map((todo) => (
+                <TodoItem key={todo.id}>
+                  <TaskText $completed={todo.completed}>{todo.text}</TaskText>
+                  {todo.tag ? (
+                    <TagDot tag={todo.tag} />
+                  ) : (
+                    <div style={{ height: "12px" }} />
+                  )}
+                  <NotesText>{todo.notes || <span>&nbsp;</span>}</NotesText>
+                  <StyledCheckBox
+                    checked={todo.completed}
+                    onChange={() => toggleTodo(todo.id)}
+                    type="checkbox"
+                    aria-label="Checkbox"
+                  />
+                  <RemoveButton
+                    onClick={() => removeTodo(todo.id)}
+                    type="remove"
+                    aria-label="Remove task"
+                  >
+                    Remove 🗑️
+                  </RemoveButton>
+                </TodoItem>
+              ))}
+            </TodoList>
+            {todos.length > 0 && (
+              <>
+                <TaskCount>{todos.length} Task total</TaskCount>
+              </>
+            )}
+            {todos.length === 0 && (
+              <TaskList>
+                You have no tasks at the moment. Enjoy your day!
+              </TaskList>
+            )}
+          </Form>
         </MainContainer>
       </main>
     </>

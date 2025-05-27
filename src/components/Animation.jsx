@@ -7,19 +7,15 @@ const Wrapper = styled.div`
   max-width: 50px;
   max-height: 50px;
   display: flex;
-  position: absolute;
-  right: 80px;
-
-  @media (min-width: 668px) {
-    max-width: 90px;
-    max-height: 90px;
-  }
+  justify-content: center;
+  margin: 0 auto;
 `;
 
 const StarAnimation = () => {
   return (
     <Wrapper>
-      <Lottie animationData={Animation} loop={false} />
+      <Lottie animationData={Animation} loop={false} />{" "}
+      {/*play once no looping*/}
     </Wrapper>
   );
 };
