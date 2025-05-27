@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "components": "^0.1.0",
     "lottie-react": "^2.4.1",
     "moment": "^2.30.1",
@@ -18,6 +19,14 @@
     "styled": "^1.0.0",
     "styled-components": "^6.1.18",
     "zustand": "^5.0.4"
+=======
+    "global": "^4.4.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.0.0",
+    "redux-devtools-extension": "^2.13.9",
+    "state": "^0.2.0",
+    "zustand": "^5.0.5"
+>>>>>>> b41cce79151f81db4fec573cba21c25a818eb022
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -28,6 +37,6 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
-    "vite": "^6.2.0"
+    "vite": "^6.3.5"
   }
 }
