@@ -20,7 +20,7 @@
     "express": "^5.1.0",
     "global": "^4.4.0",
     "react": "^19.1.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.1.0",
     "redux-devtools-extension": "^2.13.9",
     "state": "^0.2.0",
     "styled-components": "^6.1.19",
