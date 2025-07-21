@@ -3,11 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": server.js",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+
+    "start": "nodemon server.js -- exec babel-node"
+    "test": "jest"
+}
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +31,15 @@
     "state": "^0.2.0",
     "styled-components": "^6.1.19",
     "zustand": "^5.0.5"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+    "babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "babel/present-env": "^7.8.3",
+    "nodemon": "^2.0.2"
+  }
+
+    }
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
