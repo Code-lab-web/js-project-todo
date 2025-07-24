@@ -13,11 +13,8 @@
 
     "start": "nodemon server.js -- exec babel-node"
     "test": "jest"
-}
-
-    "test": "echo\"Error: no test specified\"&& exit I"
     "author:"Code-lab-web"
-    "license": "",
+    "license": "ISC",
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
