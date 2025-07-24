@@ -12,15 +12,12 @@
     "preview": "vite preview"
 
     "start": "nodemon server.js -- exec babel-node"
-<<<<<<< HEAD
     "test": "jest"
 }
-=======
-    "test": "echo\"Error: no test specified\"&& exit I"
-    "author:"Johan Skarpsvärd"
-    "license": "",
 
->>>>>>> 48666dd (git commit -m "Code-lab-web")
+    "test": "echo\"Error: no test specified\"&& exit I"
+    "author:"Code-lab-web"
+    "license": "",
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
