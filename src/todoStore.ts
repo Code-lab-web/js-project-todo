@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { TodoItem } from "../TodoItem";
+import { TodoItem } from "./assets/stores/components/pages/TodoItem";
 export interface Todo {...
     //Define the store's state type
     interface Todostate {
