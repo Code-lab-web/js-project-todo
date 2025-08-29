@@ -11,7 +11,7 @@
     "dev": "nodemon server.js --exec babel-node",
     "test": "jest"
   },
-  "author": "Code-lab-web", 
+  "author": "Code-lab-web",
   "license": "(ISC OR GPL-3.0)",
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,23 +19,26 @@
     "@fontsource/roboto": "^5.2.6",
     "@mui/icons-material": "^7.2.0",
     "@mui/material": "^7.2.0",
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "global": "^4.4.0",
+    "jsonwebtoken": "^9.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "styled-components": "^6.1.19"
   },
-  "devDependencies": { 
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "@types/react": "^19.0.10",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
-    "@babel/core": "^7.8.3",
-    "@babel/node": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "nodemon": "^2.0.2", 
+    "nodemon": "^2.0.2",
     "vite": "^6.3.5"
-  }}
+  }
+}
