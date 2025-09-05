@@ -1,0 +1,11 @@
+
+locations:
+  home:
+    from: /path/to/your/home
+    to:
+      - backup1
+
+backends:
+  backup1:
+    type: local
+    path: /path/to/your/backup/repo
