@@ -1,0 +1,27 @@
+import * as React from 'react';
+import Slider from '@mui/material/Slider';
+import './PlainCssSliderDeep2.css';
+
+export default function PlainCssSliderDeep2() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className="slider"
+        slotProps={{ thumb: { className: 'thumb' } }}
+      />
+    </div>
+  );
+}
+.slider {
+    color: #20b2aa;
+  }
+  
+  .slider:hover {
+    color: #2e8b57;
+  }
+  
+  .slider .thumb {
+    border-radius: 1px;
+  }

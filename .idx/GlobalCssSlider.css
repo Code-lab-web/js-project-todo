@@ -1,0 +1,40 @@
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function GlobalCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material UI's styles. */}
+    </CacheProvider>
+  );
+}
+import * as React from 'react';
+import { StyledEngineProvider } from '@mui/material/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. Now you can override Material UI's styles. */}
+    </StyledEngineProvider>
+  );
+}
+import * as React from 'react';
+import Slider from '@mui/material/Slider';
+import './GlobalCssSlider.css';
+
+export default function GlobalCssSlider() {
+  return <Slider defaultValue={30} />;
+}
+.MuiSlider-root {
+    color: #20b2aa;
+  }
+  
+  .MuiSlider-root:hover {
+    color: #2e8b57;
+  }

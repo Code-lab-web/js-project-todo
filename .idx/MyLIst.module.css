@@ -1,0 +1,10 @@
+.myListItem {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Combine global state class with a locally scoped class */
+  :global(.Mui-selected).myListItem {
+    background-color: #1976d2;
+    color: white;
+  }
