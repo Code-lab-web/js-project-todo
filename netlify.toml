@@ -1,0 +1,12 @@
+[build]
+  base    = "my-project"
+  command = "npm install && npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "../backend"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat"
+  status = 200

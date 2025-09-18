@@ -1,14 +1,30 @@
-import { Form } from "react-router-dom";
+import {
+  useLoaderData,
+  Form,
+  useFetcher,
+} from "react-router-dom";
+import { getContact, updateContact } from "../contacts";
+
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { contact };
+}
+
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  return updateContact(params.contactId, {
+    favorite: formData.get("favorite") === "true",
+  });
+}
 
 export default function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://robohash.org/you.png?size=200x200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+  const { contact } = useLoaderData();
 
   return (
     <div id="contact">
@@ -30,7 +46,7 @@ export default function Contact() {
             </>
           ) : (
             <i>No Name</i>
-          )}{" "}
+          )}{ " "}
           <Favorite contact={contact} />
         </h1>
 
@@ -73,9 +89,14 @@ export default function Contact() {
 }
 
 function Favorite({ contact }) {
-  const favorite = contact.favorite;
+  const fetcher = useFetcher();
+
+  const favorite = fetcher.formData
+    ? fetcher.formData.get("favorite") === "true"
+    : contact.favorite;
+
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
@@ -87,111 +108,6 @@ function Favorite({ contact }) {
       >
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
-import { Form, useLoaderData } from "react-router-dom";
-import { getContact } from "../contacts";
-
-export async function loader({ params }) {
-  const contact = await getContact(params.contactId);
-  return { contact };
-}
-
-export default function Contact() {
-  const { contact } = useLoaderData();
-  // existing code
-}
-<Form
-  method="post"
-  action="destroy"
-  onSubmit={(event) => {
-    if (
-      !confirm(
-        "Please confirm you want to delete this record."
-      )
-    ) {
-      event.preventDefault();
-    }
-  }}
->
-  <button type="submit">Delete</button>
-</Form>
-import {
-    useLoaderData,
-    Form,
-    useFetcher,
-  } from "react-router-dom";
-  
-  // existing code
-  
-  function Favorite({ contact }) {
-    const fetcher = useFetcher();
-    const favorite = contact.favorite;
-  
-    return (
-      <fetcher.Form method="post">
-        <button
-          name="favorite"
-          value={favorite ? "false" : "true"}
-          aria-label={
-            favorite
-              ? "Remove from favorites"
-              : "Add to favorites"
-          }
-        >
-          {favorite ? "★" : "☆"}
-        </button>
-      </fetcher.Form>
-    );
-  }
-  // existing code
-import { getContact, updateContact } from "../contacts";
-
-export async function action({ request, params }) {
-  const formData = await request.formData();
-  return updateContact(params.contactId, {
-    favorite: formData.get("favorite") === "true",
-  });
-}
-
-export default function Contact() {
-  // existing code
-}
-// existing code
-
-function Favorite({ contact }) {
-    const fetcher = useFetcher();
-  
-    const favorite = fetcher.formData
-      ? fetcher.formData.get("favorite") === "true"
-      : contact.favorite;
-  
-    return (
-      <fetcher.Form method="post">
-        <button
-          name="favorite"
-          value={favorite ? "false" : "true"}
-          aria-label={
-            favorite
-              ? "Remove from favorites"
-              : "Add to favorites"
-          }
-        >
-          {favorite ? "★" : "☆"}
-        </button>
-      </fetcher.Form>
-    );
-  }
-  export async function loader({ params }) {
-    const contact = await getContact(params.contactId);
-    if (!contact) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return { contact };
-  }
-  
-  
