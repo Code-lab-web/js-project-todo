@@ -16,12 +16,12 @@ const _TodoStoreInstance = create(
 );
   function TodoCounter() {
     const todo = useTodo((state) => state.todos);
-    return <h1>{todo} todos here...</h1>;
+    return <h1>Current number of todos: {todo}</h1>;
   }
   
   function Controls() {
     const increasePopulation = useTodo((state) => state.increasePopulation);
-    return <button onClick={increasePopulation}>one up</button>;
+    return <button onClick={increasePopulation}>Add a todo</button>;
   }
 
 
@@ -48,10 +48,10 @@ export const Button = () => {
 
   return (
     <section className="dark">
-      <h2>Button</h2>
-      <button onClick={() => console.log("light")}>Light Theme</button>
-      <button onClick={() => console.log("dark")}>Dark Theme</button>
-      <button onClick={() => console.log("blue")}>Blue</button>
+      <h2>Button Controls</h2>
+      <button onClick={() => console.log("light")} aria-label="Activate light theme">Light Theme</button>
+      <button onClick={() => console.log("dark")} aria-label="Activate dark theme">Dark Theme</button>
+      <button onClick={() => console.log("blue")} aria-label="Activate blue theme">Blue</button>
       <button onClick={markUncompletedTasks}>Mark Uncompleted Tasks</button>
     </section>
   );
