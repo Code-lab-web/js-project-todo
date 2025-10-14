@@ -1,0 +1,1 @@
+{"functions":[{"bundler":"nft","buildData":{"runtimeAPIVersion":1},"mainFile":"/home/user/js-project-todo/backend/server.js","name":"server","priority":10,"runtimeVersion":"nodejs20.x","path":"/home/user/js-project-todo/.netlify/functions/server.zip","runtime":"js"}],"system":{"arch":"x64","platform":"linux"},"timestamp":1758197982513,"version":1}
