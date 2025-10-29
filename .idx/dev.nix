@@ -5,4 +5,9 @@
         pkgs.python311Packages
         pkgs.busybox
         gcc
+        gnumake
+        pkg-config
+        autoconf
+        automake
+        libtool
       ]
