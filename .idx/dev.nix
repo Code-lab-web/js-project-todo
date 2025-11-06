@@ -10,4 +10,5 @@
         autoconf
         automake
         libtool
+        pkgs.nox
       ]
