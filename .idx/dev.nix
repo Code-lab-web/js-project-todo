@@ -1,14 +1,15 @@
-
-      jsonpkgs: with pkgs; [
-        nodejs_20
-        nodePackages.pnpm
-        pkgs.python39Packages
-        pkgs.busybox
-        gcc
-        gnumake
-        pkg-config
-        autoconf
-        automake
-        libtool
-        pkgs.nox
-      ]
+{ pkgs ? import <nixpkgs> {} }: {
+  packages = with pkgs; [
+    nodejs_20
+    nodePackages.pnpm
+    python39
+    busybox
+    gcc
+    gnumake
+    pkg-config
+    autoconf
+    automake
+    libtool
+    nox
+  ];
+}
