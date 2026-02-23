@@ -5,4 +5,8 @@ node_modules
 
 # Database
 *.db
+<<<<<<< HEAD
 sessions.db
+=======
+sessions.db
+>>>>>>> 688a1ea8f1 (git commit -m "Code-lab-web")
