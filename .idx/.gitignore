@@ -24,3 +24,7 @@ package-lock.json
 *.sln
 *.sw?
 .env
+
+# Database
+*.db
+sessions.db
