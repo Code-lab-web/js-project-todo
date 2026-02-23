@@ -1,2 +1,8 @@
-facebook-tutorial/
 node_modules
+.env
+# Local Netlify folder
+.netlify
+
+# Database
+*.db
+sessions.db
